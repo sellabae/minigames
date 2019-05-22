@@ -7,17 +7,18 @@ let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 const cardFlipSound = document.getElementById('cardFlipAudio');
+const cardShuffleSound = document.getElementById('cardShuffleAudio');
 
 //this function can be invoked right after its declaration by using
 //Immediately Invoked Function Expression (IIFE): Self-Executing Anonymous Function
 //e.g. (function func_name(){...})();
-(function startGame() {
+function startGame() {
   //attach event listener to all cards
   //element.addEventListener(event, function, useCapture)
   cards.forEach(card => card.addEventListener('click', flipCard));
-  
+
   shuffle();
-})();
+};
 
 //call flip action
 function flipCard() {
@@ -82,8 +83,33 @@ function resetBoard() {
 }
 
 function shuffle() {
+  cardShuffleSound.currentTime = 0;
+  let promise = cardShuffleSound.play();
+  if(promise !== undefined) {
+    promise.then(_ => {
+      //Autoplay started.
+      console.log('shuffle sound played.');
+    }).catch(error => {
+      //Autoplay was prevented.
+      console.log('shuffle sound autoplay blocked.');
+      // Show a "Play" button so that user can start playback.
+    });
+  }
+  cards.forEach(card => {
+    // how to delay between iteration??
+    if (card.classList.contains('spin')) {
+      card.classList.remove('spin');
+      console.log('remove spin: '+card);
+    }
+    card.classList.add('spin');
+    //TODO: use different method not toggle() for spin animation
+  });
+  console.log('shuffle effect');
+  console.log(cards);
+
   cards.forEach(card => {
     let randomPos = Math.floor(Math.random() * 12);
     card.style.order = randomPos;
   });
+  console.log('shuffled the cards');
 }
