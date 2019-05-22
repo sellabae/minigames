@@ -6,16 +6,31 @@ const cards = document.querySelectorAll('.memory-card');
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
+const cardFlipSound = document.getElementById('cardFlipAudio');
+
+//this function can be invoked right after its declaration by using
+//Immediately Invoked Function Expression (IIFE): Self-Executing Anonymous Function
+//e.g. (function func_name(){...})();
+(function startGame() {
+  //attach event listener to all cards
+  //element.addEventListener(event, function, useCapture)
+  cards.forEach(card => card.addEventListener('click', flipCard));
+  
+  shuffle();
+})();
 
 //call flip action
 function flipCard() {
-  //prevent flipping while more than two cards are flipped.
+  //prevent flipping more than two cards
   if (lockBoard) return;
   //prevent same card click
   if(this === firstCard) return;
 
   //flip the card
   this.classList.add('flip');
+  //TODO: play cardflip sound
+  cardFlipSound.currentTime = 0;
+  cardFlipSound.play();
 
   //save the first card
   if(!hasFlippedCard) {
@@ -66,16 +81,9 @@ function resetBoard() {
   console.log('reset the board');
 }
 
-//this function can be invoked right after its declaration by using
-//Immediately Invoked Function Expression (IIFE): Self-Executing Anonymous Function
-//e.g. (function func_name(){...})();
-(function shuffle() {
+function shuffle() {
   cards.forEach(card => {
     let randomPos = Math.floor(Math.random() * 12);
     card.style.order = randomPos;
   });
-})();
-
-//attach event listener to all cards
-//element.addEventListener(event, function, useCapture)
-cards.forEach(card => card.addEventListener('click', flipCard));
+}
