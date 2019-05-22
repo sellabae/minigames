@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 400">
+<svg viewBox="0 0 400 400"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:schema="http://schema.org/">
+      <rdf:Description rdf:about="https://github.com/sellabae">
+        <rdf:author>Sella Bae</rdf:author>
+        <rdf:homepage>https://github.com/sellabae</rdf:homepage>
+      </rdf:Description>
+    </rdf:RDF>
+  </metadata>
   <defs>
     <style>
       .cls-1{fill:none;}
