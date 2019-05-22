@@ -8,12 +8,22 @@
     <link rel="stylesheet" href="./styles.css">
     <link rel="icon" type="image/png" href="img/sella_favicon32px.png">
 </head>
-<body>
+<body onload="startGame()">
 
   <audio id="cardFlipAudio">
-    <source src="audios/flip-a-card-1.wav" type="audio/wav">
+    <source src="audios/flip-a-card-1.m4a" type="audio/mp4">
     Your browser does not support the audio element.
   </audio>
+  <audio id="cardShuffleAudio">
+    <source src="audios/shuffle-cards-1.m4a" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
+
+  <section class="message-board">
+    <div>
+      <button onclick="shuffle()">Shuffle</button>
+    </div>
+  </section>
 
   <section class="memory-game">
     <div class="memory-card" data-framework="jiyeon">
