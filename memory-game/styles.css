@@ -3,36 +3,12 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: monospace;
-  font-size: 14pt;
 }
 
 body {
   height: 100vh;
   display: flex;
   background: #003141;
-}
-
-p {
-  color: white;
-}
-.game-message {
-  width: 100%;
-  height: 40px;
-  background-color: black;
-  vertical-align: bottom;
-  padding: 4px;
-  position: fixed;
-}
-.message {
-  text-align: center;
-  background-color: blue;
-}
-button {
-  background-color: white;
-  color: black;
-  border-radius: 5px;
-  padding: 5px;
 }
 
 .memory-game {
@@ -62,12 +38,6 @@ button {
 
 .memory-card.flip {
   transform: rotateY(180deg);
-}
-
-/* how can I make this work? blinking when matched*/
-.memory-card.large {
-  transform: scale(1.03);
-  transition: transform .2s;
 }
 
 .front-face,

@@ -6,20 +6,6 @@ const cards = document.querySelectorAll('.memory-card');
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
-let score = 0;
-
-//this function can be invoked right after its declaration by using
-//Immediately Invoked Function Expression (IIFE): Self-Executing Anonymous Function
-//e.g. (function func_name(){...})();
-function shuffle() {
-  cards.forEach(card => {
-    let randomPos = Math.floor(Math.random() * 12);
-    card.style.order = randomPos;
-  });
-}
-
-console.log('Memory Game started...');
-// shuffle();
 
 //call flip action
 function flipCard() {
@@ -53,10 +39,7 @@ function checkForMatch() {
 
 function matchAction() {
   console.log('Match!');
-  score++;
-  updateScore();
-  // firstCard.classList.toggle('large');
-  // secondCard.classList.toggle('large');
+
   disableCards();
 }
 
@@ -83,14 +66,16 @@ function resetBoard() {
   console.log('reset the board');
 }
 
+//this function can be invoked right after its declaration by using
+//Immediately Invoked Function Expression (IIFE): Self-Executing Anonymous Function
+//e.g. (function func_name(){...})();
+(function shuffle() {
+  cards.forEach(card => {
+    let randomPos = Math.floor(Math.random() * 12);
+    card.style.order = randomPos;
+  });
+})();
 
 //attach event listener to all cards
 //element.addEventListener(event, function, useCapture)
 cards.forEach(card => card.addEventListener('click', flipCard));
-
-document.getElementById("msg").innerHTML = 'Start!';
-
-//message under memory-game
-function updateScore() {
-  document.getElementById("msg").innerHTML = "Score: "+score;
-}
