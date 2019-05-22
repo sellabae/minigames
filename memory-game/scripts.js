@@ -83,6 +83,7 @@ function resetBoard() {
 }
 
 function shuffle() {
+  //shuffle sound effect
   cardShuffleSound.currentTime = 0;
   let promise = cardShuffleSound.play();
   if(promise !== undefined) {
@@ -95,21 +96,23 @@ function shuffle() {
       // Show a "Play" button so that user can start playback.
     });
   }
+
+  //spin animation
   cards.forEach(card => {
-    // how to delay between iteration??
-    if (card.classList.contains('spin')) {
-      card.classList.remove('spin');
-      console.log('remove spin: '+card);
-    }
+    //restart spin animation
+    card.classList.remove('spin');
+    void card.offsetWidth;
     card.classList.add('spin');
-    //TODO: use different method not toggle() for spin animation
+    //TODO: how to delay between iteration??
+    //...
   });
   console.log('shuffle effect');
   console.log(cards);
 
+  //randomizing card order
   cards.forEach(card => {
     let randomPos = Math.floor(Math.random() * 12);
     card.style.order = randomPos;
   });
-  console.log('shuffled the cards');
+  console.log('shuffled the cards.');
 }
