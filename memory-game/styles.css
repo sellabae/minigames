@@ -9,6 +9,8 @@ body {
   height: 100vh;
   display: flex;
   background: #003141;
+  color: white;
+  font-family: sans-serif;
 }
 
 .memory-game {
@@ -87,4 +89,35 @@ body {
 .front-face {
   transform: rotateY(180deg);
   background: white;
+}
+
+
+/* message board */
+.message-board {
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  display: flex;
+  background-color: black;
+  align-items: center;
+  visibility: visible;
+}
+.start-button {
+  background-color: #FFDE00;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border-style: none;
+  font-size: large;
+}
+.start-button:focus {
+  outline: none;
+}
+.message-panel {
+  display: flex;
+  background-color: red;
+  width: 200px;
+}
+.value {
+  width: 50px;
+  background-color: blue;
 }
