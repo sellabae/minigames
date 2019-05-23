@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./styles.css">
     <link rel="icon" type="image/png" href="img/sella_favicon32px.png">
 </head>
-<body onload="startGame()">
+<body>
 
   <audio id="cardFlipAudio">
     <source src="audios/flip-a-card-1.m4a" type="audio/mp4">
@@ -20,8 +20,16 @@
   </audio>
 
   <section class="message-board">
-    <div>
-      <button onclick="shuffle()">Shuffle</button>
+    <button id="startBtn" class="start-button" onclick="startGame()">START</button>
+    <div class="message-panel">
+      <div class="messagebox">
+        <p class="message">score: </p>
+        <p id="scoreValue" class="value"></p>
+      </div>
+      <div class="messagebox">
+        <p class="message">moves: </p>
+        <p id="moveValue" class="value"></p>
+      </div>
     </div>
   </section>
 
