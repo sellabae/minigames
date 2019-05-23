@@ -9,20 +9,15 @@ let firstCard, secondCard;
 const cardFlipSound = document.getElementById('cardFlipAudio');
 const cardShuffleSound = document.getElementById('cardShuffleAudio');
 let time=0, move=0, matches=0;
-let timer;
 let startTime, finishTime;
 
 function startGame() {
+  document.getElementById('resultBox').classList.remove('show');
   console.log('initialize the game');
   resetGame();
   shuffle();
 
-  timer = setInterval(function(){
-      time++;
-      updateTime();
-    }, 1000);
   startTime = new Date();
-  console.log(startTime);
 
   //attach event listener to all cards
   //element.addEventListener(event, function, useCapture)
@@ -32,10 +27,10 @@ function startGame() {
 };
 
 function finishGame() {
-  finishTime = new Date() - startTime;
-  console.log(finishTime);
-  clearInterval(timer);
-  console.log('You Win! move:'+move+' time:'+time);
+  finishTime = new Date();
+  time = (finishTime - startTime)/1000;
+  console.log('You Win! move:'+move+' time:'+time+'s');
+  showResult();
 }
 
 //call flip action
@@ -45,7 +40,6 @@ function flipCard() {
   //prevent same card click
   if(this === firstCard) return;
   move++;
-  updateMessageBoard();
 
   //flip the card
   this.classList.add('flip');
@@ -154,10 +148,8 @@ function shuffleEffect() {
     }
 }
 
-function updateMessageBoard() {
+function showResult() {
   document.getElementById('moveValue').innerText = move;
-}
-
-function updateTime(){
   document.getElementById('timeValue').innerText = time;
+  document.getElementById('resultBox').classList.add('show');
 }

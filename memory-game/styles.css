@@ -96,10 +96,9 @@ body {
 .message-board {
   width: 100%;
   height: 30px;
-  position: absolute;
+  position: fixed;
   display: flex;
   background-color: black;
-  align-items: center;
   visibility: visible;
 }
 .start-button {
@@ -112,6 +111,30 @@ body {
 .start-button:focus {
   outline: none;
 }
+
+
+.result-box {
+  width: 400px;
+  height: 300px;
+  position: fixed;
+  top: calc(50% - 200px);
+  left: calc(50% - 150px);
+  margin: auto;
+  display: block;
+  flex-wrap: wrap;
+  background-color: black;
+  opacity: .8;
+  border-radius: 5px;
+  padding: 20px;
+  visibility: hidden;
+}
+.result-box.show {
+  visibility: visible;
+}
+.result {
+  opacity: 1;
+}
+
 .message-panel {
   display: flex;
   background-color: darkgray;

@@ -21,17 +21,8 @@
 
   <section class="message-board">
     <button id="startBtn" class="start-button" onclick="startGame()">START</button>
-    <div class="message-panel">
-      <div class="message-box">
-        <p class="message">move: </p>
-        <p id="moveValue" class="value"></p>
-      </div>
-      <div class="message-box">
-        <p class="message">time: </p>
-        <p id="timeValue" class="value"></p>
-      </div>
-    </div>
   </section>
+
 
   <section class="memory-game">
     <div class="memory-card" data-framework="jiyeon">
@@ -81,6 +72,21 @@
     <div class="memory-card" data-framework="aurelia">
       <img class="front-face" src="img/aurelia.svg" alt="Aurelia">
       <img class="back-face" src="img/js-badge.svg" alt="Memory Card">
+    </div>
+  </section>
+
+  <section id="resultBox" class="result-box">
+    <div class="result">
+      <p class="message">Finished!</p>
+      <div class="message-box">
+        <p class="value-label">move: </p>
+        <p id="moveValue" class="value"></p>
+      </div>
+      <div class="message-box">
+        <p class="value-label">time: </p>
+        <p id="timeValue" class="value"></p>
+      </div>
+      <button id="restartBtn" class="start-button" onclick="startGame()">RESTART</button>
     </div>
   </section>
 
