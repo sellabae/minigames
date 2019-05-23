@@ -16,8 +16,13 @@ function startGame() {
   //attach event listener to all cards
   //element.addEventListener(event, function, useCapture)
   cards.forEach(card => card.addEventListener('click', flipCard));
-
   shuffle();
+  //change button text to 'RESTART'
+  document.getElementById('startBtn').innerText = 'RESTART';
+  //unflip all cards
+  cards.forEach(card => {
+    card.classList.remove('flip');
+  });
 };
 
 //call flip action
@@ -107,7 +112,6 @@ function shuffle() {
     //...
   });
   console.log('shuffle effect');
-  console.log(cards);
 
   //randomizing card order
   cards.forEach(card => {
