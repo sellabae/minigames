@@ -114,10 +114,15 @@ body {
 }
 .message-panel {
   display: flex;
-  background-color: red;
+  background-color: darkgray;
   width: 200px;
+  margin-left: 10px;
+}
+.message-box {
+  width: 80px;
+  display: flex;
 }
 .value {
-  width: 50px;
   background-color: blue;
+  margin-left: 5px;
 }
