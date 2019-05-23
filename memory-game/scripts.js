@@ -9,27 +9,34 @@ let firstCard, secondCard;
 const cardFlipSound = document.getElementById('cardFlipAudio');
 const cardShuffleSound = document.getElementById('cardShuffleAudio');
 let time=0, move=0, matches=0;
+let timer;
+let startTime, finishTime;
 
-//this function can be invoked right after its declaration by using
-//Immediately Invoked Function Expression (IIFE): Self-Executing Anonymous Function
-//e.g. (function func_name(){...})();
 function startGame() {
   console.log('initialize the game');
-  //unflip all cards
-  cards.forEach(card => {
-    card.classList.remove('flip');
-  });
-  resetBoard();
-  time = 0;
-  move = 0;
-  //shuffle cards
+  resetGame();
   shuffle();
+
+  timer = setInterval(function(){
+      time++;
+      updateTime();
+    }, 1000);
+  startTime = new Date();
+  console.log(startTime);
+
   //attach event listener to all cards
   //element.addEventListener(event, function, useCapture)
   cards.forEach(card => card.addEventListener('click', flipCard));
   //change button text to 'RESTART'
   document.getElementById('startBtn').innerText = 'RESTART';
 };
+
+function finishGame() {
+  finishTime = new Date() - startTime;
+  console.log(finishTime);
+  clearInterval(timer);
+  console.log('You Win! move:'+move+' time:'+time);
+}
 
 //call flip action
 function flipCard() {
@@ -70,7 +77,7 @@ function matchAction() {
   console.log('Match!');
   matches++;
   if(matches == 6){
-    console.log('You Win! move:'+move+' time:'+time);
+    finishGame();
   }
   disableCards();
 }
@@ -96,6 +103,17 @@ function resetBoard() {
   [hasFlippedCard, lockBoard] = [false, false];
   [firstCard, secondCard] = [null, null];
   console.log('reset the board');
+}
+
+function resetGame() {
+  //unflip all cards
+  cards.forEach(card => {
+    card.classList.remove('flip');
+  });
+  resetBoard();
+  time = 0;
+  move = 0;
+  matches = 0;
 }
 
 function shuffle() {
@@ -124,6 +142,7 @@ function shuffleEffect() {
     }
     //spin animation with delay between iteration
     for (var i=0; i<cards.length; i++) {
+      //used IIFE
       (function (i) {
         setTimeout(function () {
           //restart spin animation
@@ -133,16 +152,12 @@ function shuffleEffect() {
         }, 50*i);
       })(i);
     }
-    // cards.forEach(card => {
-    //   card.classList.remove('spin');
-    //   void card.offsetWidth;
-    //   card.classList.add('spin');
-    //   //TODO: how to delay between iteration??
-    //   //...
-    // });
 }
 
 function updateMessageBoard() {
   document.getElementById('moveValue').innerText = move;
+}
+
+function updateTime(){
   document.getElementById('timeValue').innerText = time;
 }
