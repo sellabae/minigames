@@ -13,8 +13,7 @@ let startTime, finishTime;
 
 function startGame() {
   document.getElementById('resultBox').classList.remove('show');
-  console.log('initialize the game');
-  resetGame();
+  initializeGame();
   shuffle();
 
   startTime = new Date();
@@ -99,11 +98,13 @@ function resetBoard() {
   console.log('reset the board');
 }
 
-function resetGame() {
+function initializeGame() {
+  console.log('initialize the game');
   //unflip all cards
   cards.forEach(card => {
     card.classList.remove('flip');
   });
+  //initialize all varialbes
   resetBoard();
   time = 0;
   move = 0;
