@@ -14,7 +14,8 @@ let startTime, finishTime;
 function startGame() {
   hideResult();
   initializeGame();
-  shuffle();
+  //execute method shuffle() 1s after hiding all cards
+  setTimeout(shuffle, 500);
 
   //TODO: can be start when clicking the first card
   startTime = new Date();
@@ -125,6 +126,7 @@ function shuffle() {
 function shuffleEffect() {
     //shuffle sound effect
     cardShuffleSound.currentTime = 0;
+    //handle autoplay prevention in Chrome browsers
     let promise = cardShuffleSound.play();
     if(promise !== undefined) {
       promise.then(_ => {
