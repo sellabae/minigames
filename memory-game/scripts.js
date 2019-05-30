@@ -12,10 +12,11 @@ let time=0, move=0, matches=0;
 let startTime, finishTime;
 
 function startGame() {
-  document.getElementById('resultBox').classList.remove('show');
+  hideResult();
   initializeGame();
   shuffle();
 
+  //TODO: can be start when clicking the first card
   startTime = new Date();
 
   //attach event listener to all cards
@@ -153,4 +154,7 @@ function showResult() {
   document.getElementById('moveValue').innerText = move;
   document.getElementById('timeValue').innerText = time;
   document.getElementById('resultBox').classList.add('show');
+}
+function hideResult() {
+  document.getElementById('resultBox').classList.remove('show');
 }
