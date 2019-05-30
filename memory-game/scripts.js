@@ -42,7 +42,7 @@ function flipCard() {
 
   //flip the card
   this.classList.add('flip');
-  //TODO: play cardflip sound
+  //play cardflip sound
   cardFlipSound.currentTime = 0;
   cardFlipSound.play();
 
