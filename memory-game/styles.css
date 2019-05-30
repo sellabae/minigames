@@ -49,6 +49,7 @@ body {
   animation: spin .3s linear 2;
   /* how can I call front-face.hidden?? */
 }
+/* TODO: Use Sass to make animation code simpler */
 @-webkit-keyframes spin {
   from { -webkit-transform: rotateY(0deg); opacity: 0;}
   to { -webkit-transform: rotateY(359deg); opacity: 1; }
@@ -95,24 +96,35 @@ body {
 /* message board */
 .message-board {
   width: 100%;
-  height: 30px;
+  height: 40px;
   position: fixed;
   display: flex;
-  background-color: black;
+  /* background-color: black; */
   visibility: visible;
+  padding-top: 10px;
 }
 .start-button {
-  background-color: #FFDE00;
-  padding: 5px 10px;
+  background-color: transparent;
+  border: 1px solid white;
   border-radius: 5px;
-  border-style: none;
-  font-size: large;
+  font-size: 1em;
+  color: white;
+  opacity: 0.5;
+  padding: 5px 10px;
+  width: 100px;
+  /* center the button */
+  margin: 0 auto;
+}
+.start-button:hover {
+  background-color: white;
+  color: black;
 }
 .start-button:focus {
   outline: none;
 }
 
 
+/* result box */
 .result-box {
   width: 400px;
   height: 300px;
