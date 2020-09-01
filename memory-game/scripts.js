@@ -13,25 +13,15 @@ let startTime, finishTime;
 
 //first shuffle event to avoid the sound being blocked
 let hasShuffled = false;
-window.addEventListener('click', function() {
-  if (!hasShuffled) {
-    console.log('initial shuffle');
-    hasShuffled = true;
-    startGame();
-  }
+$(document).ready(function() {
+  $(document).on('click touchstart', function() {
+    if (!hasShuffled) {
+      console.log('initial shuffle');
+      hasShuffled = true;
+      startGame();
+    }
+  });
 });
-
-//detect device from userAgent
-// window.addEventListener('load', function() {
-//   console.log(navigator.userAgent);
-//   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-//     console.log('mobile');
-//     document.getElementById('pInstruction').innerText = "Touch anywhere to start the game";
-//   } else {
-//     console.log('not mobile');
-//     document.getElementById('pInstruction').innerText = "Click anywhere to start the game";
-//   }
-// });
 
 function startGame() {
   hideResult();
@@ -46,7 +36,7 @@ function startGame() {
 
   //attach event listener to all cards
   //element.addEventListener(event, function, useCapture)
-  cards.forEach(card => card.addEventListener('click', flipCard));
+  cards.forEach(card => $(card).on('click touchstart', flipCard));
 };
 
 function finishGame() {
@@ -101,8 +91,9 @@ function matchAction() {
 }
 
 function disableCards() {
-  firstCard.removeEventListener('click', flipCard);
-  secondCard.removeEventListener('click', flipCard);
+  $(firstCard).off('click touchstart');
+  $(secondCard).off('click touchstart');
+
   resetBoard();
 }
 
