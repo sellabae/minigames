@@ -52,7 +52,7 @@ function startGame() {
 function finishGame() {
   finishTime = new Date();
   time = (finishTime - startTime)/1000;
-  console.log('You Win! move:'+move+' time:'+time+'s');
+  console.log('Finished! move:'+move+' time:'+time+'s');
   showResult();
   hasShuffled = false;
 }
