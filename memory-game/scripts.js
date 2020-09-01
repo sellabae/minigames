@@ -11,20 +11,42 @@ const cardShuffleSound = document.getElementById('cardShuffleAudio');
 let time=0, move=0, matches=0;
 let startTime, finishTime;
 
+//first shuffle event to avoid the sound being blocked
+let hasShuffled = false;
+window.addEventListener('click', function() {
+  if (!hasShuffled) {
+    console.log('initial shuffle');
+    hasShuffled = true;
+    startGame();
+  }
+});
+
+//detect device from userAgent
+// window.addEventListener('load', function() {
+//   console.log(navigator.userAgent);
+//   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+//     console.log('mobile');
+//     document.getElementById('pInstruction').innerText = "Touch anywhere to start the game";
+//   } else {
+//     console.log('not mobile');
+//     document.getElementById('pInstruction').innerText = "Click anywhere to start the game";
+//   }
+// });
+
 function startGame() {
   hideResult();
+  document.getElementById('pInstruction').style.visibility = "hidden";
+  document.getElementById('pResult').style.visibility = "hidden";
+
   initializeGame();
   //execute method shuffle() 1s after hiding all cards
   setTimeout(shuffle, 500);
 
-  //TODO: can be start when clicking the first card
   startTime = new Date();
 
   //attach event listener to all cards
   //element.addEventListener(event, function, useCapture)
   cards.forEach(card => card.addEventListener('click', flipCard));
-  //change button text to 'RESTART'
-  document.getElementById('startBtn').innerText = 'RESTART';
 };
 
 function finishGame() {
@@ -32,6 +54,7 @@ function finishGame() {
   time = (finishTime - startTime)/1000;
   console.log('You Win! move:'+move+' time:'+time+'s');
   showResult();
+  hasShuffled = false;
 }
 
 //call flip action
@@ -52,12 +75,12 @@ function flipCard() {
   if(!hasFlippedCard) {
     hasFlippedCard = true;
     firstCard = this;
-    console.log('first card: '+firstCard.dataset.framework);
+    // console.log('first card: '+firstCard.dataset.framework);
     return;
   }
   //save the second card
   secondCard = this;
-  console.log('second card: '+secondCard.dataset.framework);
+  // console.log('second card: '+secondCard.dataset.framework);
 
   //check the match of two cards
   checkForMatch();
@@ -72,7 +95,7 @@ function matchAction() {
   console.log('Match!');
   matches++;
   if(matches == 6){
-    finishGame();
+    setTimeout(finishGame, 500);
   }
   disableCards();
 }
@@ -153,9 +176,13 @@ function shuffleEffect() {
 }
 
 function showResult() {
-  document.getElementById('moveValue').innerText = move;
-  document.getElementById('timeValue').innerText = time;
-  document.getElementById('resultBox').classList.add('show');
+  resultP = document.getElementById('pResult');
+  resultP.innerText = "Wow! You've finished it for "+move+" moves in "+time.toFixed(2)+"s!";
+  resultP.style.visibility = "visible";
+
+  // document.getElementById('moveValue').innerText = move;
+  // document.getElementById('timeValue').innerText = time;
+  // document.getElementById('resultBox').classList.add('show');
 }
 function hideResult() {
   document.getElementById('resultBox').classList.remove('show');

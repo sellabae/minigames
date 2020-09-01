@@ -104,6 +104,8 @@ body {
   /* center elements */
   text-align: center;
   display: block;
+  /* font */
+  font-weight: lighter;
 }
 .start-button {
   background-color: transparent;
