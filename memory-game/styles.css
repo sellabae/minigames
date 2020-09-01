@@ -84,7 +84,7 @@ body {
   border-radius: 5px;
   background: #009B9F;
   visibility: visible;
-  backface-visibility: hidden;
+  backface-visibility: hidden; /* so it wont show image when flipped */
 }
 
 .front-face {
